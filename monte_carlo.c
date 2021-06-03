@@ -3,12 +3,29 @@
 #include <stdio.h>
 #include <math.h>
 
-float mc_pi(int);
-
 float frandom() {
   long int q = random();
   float ret = (float)q/(float)RAND_MAX;
   return ret;
+}
+
+float mc_pi(int n)
+{
+  float pi;
+  int circle=0;
+  for (int i=1; i<=n; i++)
+  {
+    float x=frandom();
+    float y=frandom();
+    float distance=(x-0.5)*(x-0.5) + (y-0.5)*(y-0.5);
+    if (distance<=0.25)
+    {
+      circle++;
+    }
+  }
+  pi = 4 * circle/(float)n;
+  
+  return pi;
 }
 
 int main(void) {
